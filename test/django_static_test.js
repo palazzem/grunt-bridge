@@ -22,27 +22,35 @@ var grunt = require('grunt');
     test.ifError(value)
 */
 
-exports.django_static = {
+exports.djangoStatic = {
   setUp: function(done) {
-    // setup here if necessary
     done();
   },
-  default_options: function(test) {
+  css: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    var actual = grunt.file.read('tmp/css.html');
+    var expected = grunt.file.read('test/expected/css.html');
+    test.equal(actual, expected, 'should change a link to a valid static link');
 
     test.done();
   },
-  custom_options: function(test) {
+  cssCdn: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+    var actual = grunt.file.read('tmp/cssCdn.html');
+    var expected = grunt.file.read('test/expected/cssCdn.html');
+    test.equal(actual, expected, 'should change only local links but not CDNs');
 
     test.done();
   },
+  script: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/script.html');
+    var expected = grunt.file.read('test/expected/script.html');
+    test.equal(actual, expected, 'should change only local scripts but not CDNs');
+
+    test.done();
+  }
 };

@@ -18,7 +18,7 @@ module.exports = function (grunt) {
     // Collect files and options
     var options = this.options({
       html: 'app/base.html',
-      pattern: '{% static "{path}" %}',
+      pattern: '{% static \'{path}\' %}',
       dest: '.tmp/base.html'
     });
 
