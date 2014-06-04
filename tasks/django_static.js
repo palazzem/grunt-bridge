@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     var options = this.options({
         html: 'app/base.html',
         pattern: '{% static "{path}" %}',
-        dest: '.tmp'
+        dest: '.tmp/base.html'
     });
 
     var nodes = [];
@@ -46,6 +46,6 @@ module.exports = function(grunt) {
     });
 
     // Write base html to a new file according to destination
-    grunt.file.write(options.dest + "/base.html", baseHtml);
+    grunt.file.write(options.dest, baseHtml);
   });
 };
