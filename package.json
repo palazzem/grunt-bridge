@@ -27,11 +27,18 @@
   "scripts": {
     "test": "grunt test"
   },
+  "files": [
+    "tasks/django_static.js"
+  ],
   "devDependencies": {
     "grunt-contrib-jshint": "^0.9.2",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-nodeunit": "^0.3.3",
-    "grunt": "~0.4.5"
+    "grunt": "~0.4.5",
+    "xpath": "0.0.6",
+    "npm": "^1.4.13",
+    "install": "^0.1.7",
+    "xmldom": "^0.1.19"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
