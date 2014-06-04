@@ -1,0 +1,42 @@
+{
+  "name": "grunt-django-static",
+  "description": "Convert all your js/css references to valid django static urls",
+  "version": "0.1.0",
+  "homepage": "https://github.com/palazzem/grunt-django-static",
+  "author": {
+    "name": "Emanuele Palazzetti",
+    "email": "emanuele.palazzetti@gmail.com",
+    "url": "http://palazzetti.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palazzem/grunt-django-static.git"
+  },
+  "bugs": {
+    "url": "https://github.com/palazzem/grunt-django-static/issues"
+  },
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "https://github.com/palazzem/grunt-django-static/blob/master/LICENSE-BSD"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
