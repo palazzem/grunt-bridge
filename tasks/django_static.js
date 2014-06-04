@@ -9,42 +9,43 @@
 'use strict';
 
 module.exports = function(grunt) {
+  var xpath = require('xpath'),
+      DOMParser = require('xmldom').DOMParser,
+      defaultMime = 'text/html',
+      format = require('../lib/formatter').format;
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
-
-  grunt.registerMultiTask('django_static', 'Convert all your js/css references to valid django static urls', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
+  grunt.registerMultiTask('djangoStatic', 'Convert all your js/css references to valid django static urls', function() {
+    // Collect files and options
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+        html: 'app/base.html',
+        pattern: '{% static "{path}" %}',
+        dest: '.tmp'
     });
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+    var nodes = [];
 
-      // Handle options.
-      src += options.punctuation;
+    // Load and parse base file of your framework
+    var baseHtml = grunt.file.read(options.html);
+    var dom = new DOMParser().parseFromString(baseHtml, defaultMime);
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+    // Find <link> and <scripts>
+    nodes = nodes.concat(xpath.select("//link[not(contains(@href, '//'))]", dom));
+    nodes = nodes.concat(xpath.select("//script[not(contains(@src, '//'))]", dom));
+    grunt.log.writeln("Statics found: " + nodes.length);
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+    nodes.forEach(function(value) {
+       // Grab correct selector
+       var originNode = xpath.select1('@href', value) || xpath.select1('@src', value);
+
+       // Change origin node with a new static url
+       var newPattern = format(options.pattern, {path: originNode.value});
+       var staticLink = originNode.toString().replace(originNode.value, newPattern);
+
+       baseHtml = baseHtml.replace(originNode, staticLink);
+       grunt.log.write(originNode.value + "...").ok();
     });
+
+    // Write base html to a new file according to destination
+    grunt.file.write(options.dest + "/base.html", baseHtml);
   });
-
 };
