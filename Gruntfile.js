@@ -48,6 +48,13 @@ module.exports = function(grunt) {
           html: 'test/fixtures/script.html',
           dest: 'tmp/script.html'
         }
+      },
+      differentPattern: {
+        options: {
+          html: 'test/fixtures/pattern.html',
+          pattern: '{{# url \'{path}\' }}',
+          dest: 'tmp/pattern.html'
+        }
       }
     },
 

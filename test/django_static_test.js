@@ -2,26 +2,6 @@
 
 var grunt = require('grunt');
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
-
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
-
 exports.djangoStatic = {
   setUp: function(done) {
     done();
@@ -50,6 +30,15 @@ exports.djangoStatic = {
     var actual = grunt.file.read('tmp/script.html');
     var expected = grunt.file.read('test/expected/script.html');
     test.equal(actual, expected, 'should change only local scripts but not CDNs');
+
+    test.done();
+  },
+  differentPattern: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/pattern.html');
+    var expected = grunt.file.read('test/expected/pattern.html');
+    test.equal(actual, expected, 'should use a different pattern');
 
     test.done();
   }
