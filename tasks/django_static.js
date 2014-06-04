@@ -8,18 +8,18 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   var xpath = require('xpath'),
-      DOMParser = require('xmldom').DOMParser,
-      defaultMime = 'text/html',
-      format = require('../lib/formatter').format;
+    DOMParser = require('xmldom').DOMParser,
+    defaultMime = 'text/html',
+    format = require('../lib/formatter').format;
 
-  grunt.registerMultiTask('djangoStatic', 'Convert all your js/css references to valid django static urls', function() {
+  grunt.registerMultiTask('djangoStatic', 'Convert all your js/css references to valid django static urls', function () {
     // Collect files and options
     var options = this.options({
-        html: 'app/base.html',
-        pattern: '{% static "{path}" %}',
-        dest: '.tmp/base.html'
+      html: 'app/base.html',
+      pattern: '{% static "{path}" %}',
+      dest: '.tmp/base.html'
     });
 
     var nodes = [];
@@ -33,16 +33,16 @@ module.exports = function(grunt) {
     nodes = nodes.concat(xpath.select("//script[not(contains(@src, '//'))]", dom));
     grunt.log.writeln("Statics found: " + nodes.length);
 
-    nodes.forEach(function(value) {
-       // Grab correct selector
-       var originNode = xpath.select1('@href', value) || xpath.select1('@src', value);
+    nodes.forEach(function (value) {
+      // Grab correct selector
+      var originNode = xpath.select1('@href', value) || xpath.select1('@src', value);
 
-       // Change origin node with a new static url
-       var newPattern = format(options.pattern, {path: originNode.value});
-       var staticLink = originNode.toString().replace(originNode.value, newPattern);
+      // Change origin node with a new static url
+      var newPattern = format(options.pattern, {path: originNode.value});
+      var staticLink = originNode.toString().replace(originNode.value, newPattern);
 
-       baseHtml = baseHtml.replace(originNode, staticLink);
-       grunt.log.write(originNode.value + "...").ok();
+      baseHtml = baseHtml.replace(originNode, staticLink);
+      grunt.log.write(originNode.value + "...").ok();
     });
 
     // Write base html to a new file according to destination
