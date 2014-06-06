@@ -23,9 +23,8 @@ In this way you'll achieve a ``base.html`` template in common between your front
 
 .. _Django: https://www.djangoproject.com/
 
-===============
 Getting started
-===============
+---------------
 
 If you haven't used `grunt`_ before, be sure to check out the `Getting Started`_ guide, as it explains how to create a
 `gruntfile`_ as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with
@@ -103,9 +102,8 @@ Prepare your watcher to launch ``djangoStatic`` on every page changes:
         // ...
     },
 
-=======
 Options
-=======
+-------
 
 html
 ~~~~
@@ -134,8 +132,15 @@ default: ``.tmp/base.html``
 
 Destination directory.
 
-=======
+Changelog
+---------
+
+0.1.0 [soon]
+~~~~~~~~~~~~
+
+* First release
+
 License
-=======
+-------
 
 FreeBSD (see ``LICENSE.rst`` file)
