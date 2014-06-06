@@ -2,6 +2,10 @@
 Grunt django static
 ===================
 
+.. image:: https://travis-ci.org/palazzem/grunt-django-static.svg?branch=master
+   :alt: Build Status
+   :target: https://travis-ci.org/palazzem/grunt-django-static
+
 Replaces all static references, with a custom pattern, on any views.
 
 Requirements:
