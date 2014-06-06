@@ -1,9 +1,141 @@
+===================
 Grunt django static
 ===================
 
-Something big is really happening with this grunt task.
+Replaces all static references, with a custom pattern, on any views.
 
+Requirements:
+
+* grunt >= 0.4.5
+* `xpath`_
+* `xmldom`_
+
+.. _xpath: https://github.com/goto100/xpath
+.. _xmldom: https://github.com/jindw/xmldom
+
+Use case
+--------
+
+This grunt task is really helpful if you need to compile a valid HTML page from your frontend app so it can be used
+in your backend project as a base template. A valid example is a `Django`_ app without a ``base.html`` template.
+Change your Django setting ``TEMPLATE_DIRS`` to extend search path to your grunt-django-static destination dir.
+In this way you'll achieve a ``base.html`` template in common between your frontend and backend app.
+
+.. _Django: https://www.djangoproject.com/
+
+===============
+Getting started
+===============
+
+If you haven't used `grunt`_ before, be sure to check out the `Getting Started`_ guide, as it explains how to create a
+`gruntfile`_ as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with
+this command:
+
+.. code-block:: bash
+
+    $ npm install grunt-django-static --save-dev # Not published yet!
+
+.. _grunt: http://gruntjs.com/
+.. _Getting Started: http://gruntjs.com/getting-started
+.. _gruntfile: http://gruntjs.com/getting-started
+
+Available task
+--------------
+
+This plugin exports ``djangoStatic`` task and you can use it in your gruntfile. However remember that this replace
+all your static (JS and CSS) with your chosen pattern so it's really useful if launched as last (or almost last) task
+as follows:
+
+.. code-block:: javascript
+
+    grunt.registerTask('build', [
+        'clean:dist',
+        'bowerInstall',
+        'useminPrepare',
+        'concurrent:dist',
+        'concat',
+        'ngmin',
+        'copy:dist',
+        'cdnify',
+        'cssmin',
+        'uglify',
+        'rev',
+        'usemin',
+        'htmlmin',
+        'djangoStatic:dist'     // Here I am!
+    ]);
+
+Settings
+--------
+
+Add to your ``grunt.initConfig()`` this configuration:
+
+.. code-block:: javascript
+
+    // ...
+
+    djangoStatic: {
+        dev: {
+            dest: '.tmp/templates/base.html'
+        },
+        dist: {
+            dest: 'dist/templates/base.html'
+        }
+    },
+
+    // ...
+
+Use in a watcher
+----------------
+
+Prepare your watcher to launch ``djangoStatic`` on every page changes:
+
+.. code-block:: javascript
+
+    watch: {
+        // ...
+
+        djangoStatic: {
+            files: ['<%= yeoman.app %>/*.html'],
+            tasks: ['djangoStatic:dev']
+        },
+
+        // ...
+    },
+
+=======
+Options
+=======
+
+html
+~~~~
+
+type: ``string``
+
+default: ``app/base.html``
+
+Base file to replace with chosen pattern.
+
+pattern
+~~~~~~~
+
+type: ``string``
+
+default: ``{% static "{path}" %}``
+
+Replace all static with this pattern. Remember to use ``{path}`` otherwise you'll lose statics relative paths.
+
+dest
+~~~~
+
+type: ``string``
+
+default: ``.tmp/base.html``
+
+Destination directory.
+
+=======
 License
 =======
 
-BSD-2
+FreeBSD (see ``LICENSE.rst`` file)
