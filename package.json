@@ -25,7 +25,8 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "coveralls": "grunt upload-coveralls"
   },
   "files": [
     "tasks/bridge.js"
@@ -36,6 +37,7 @@
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-nodeunit": "^0.3.3",
     "grunt-istanbul": "^0.3.0",
+    "grunt-coveralls": "^0.3.0",
     "grunt-env": "^0.4.1",
     "xpath": "0.0.6",
     "npm": "^1.4.13",

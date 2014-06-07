@@ -59,6 +59,13 @@ module.exports = function(grunt) {
         dir: 'test/coverage/reports',
         print: 'detail'
       }
+    },
+
+    // Coveralls
+    coveralls: {
+      upload: {
+        src: 'test/coverage/reports/lcov.info'
+      }
     }
 
   });
@@ -69,6 +76,7 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-istanbul');
+  grunt.loadNpmTasks('grunt-coveralls');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
@@ -76,5 +84,6 @@ module.exports = function(grunt) {
   // Test task
   grunt.registerTask('test', ['clean', 'nodeunit']);
   grunt.registerTask('coverage', ['env:coverage', 'instrument', 'nodeunit', 'storeCoverage', 'makeReport']);
+  grunt.registerTask('upload-coveralls', ['coverage', 'coveralls']);
   grunt.registerTask('default', ['jshint', 'test']);
 };
