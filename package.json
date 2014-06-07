@@ -1,8 +1,8 @@
 {
-  "name": "grunt-django-static",
-  "description": "Convert all your js/css references to valid django static urls",
+  "name": "grunt-bridge",
+  "description": "Convert all your js/css references to valid backend framework static urls",
   "version": "0.1.0",
-  "homepage": "https://github.com/palazzem/grunt-django-static",
+  "homepage": "https://github.com/palazzem/grunt-bridge",
   "author": {
     "name": "Emanuele Palazzetti",
     "email": "emanuele.palazzetti@gmail.com",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/palazzem/grunt-django-static.git"
+    "url": "https://github.com/palazzem/grunt-bridge.git"
   },
   "bugs": {
-    "url": "https://github.com/palazzem/grunt-django-static/issues"
+    "url": "https://github.com/palazzem/grunt-bridge/issues"
   },
   "licenses": [
     {
       "type": "BSD",
-      "url": "https://github.com/palazzem/grunt-django-static/blob/master/LICENSE-BSD"
+      "url": "https://github.com/palazzem/grunt-bridge/blob/master/LICENSE.rst"
     }
   ],
   "engines": {
@@ -28,7 +28,7 @@
     "test": "grunt test"
   },
   "files": [
-    "tasks/django_static.js"
+    "tasks/bridge.js"
   ],
   "devDependencies": {
     "grunt-contrib-jshint": "^0.9.2",

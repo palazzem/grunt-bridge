@@ -1,6 +1,6 @@
 /*
- * grunt-django-static
- * https://github.com/palazzem/grunt-django-static
+ * grunt-bridge
+ * https://github.com/palazzem/grunt-bridge
  *
  * Copyright (c) 2014 Emanuele Palazzetti
  * Licensed under the BSD license.
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    djangoStatic: {
+    bridge: {
       css: {
         options: {
           html: 'test/fixtures/css.html',
@@ -74,6 +74,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   // Test task
-  grunt.registerTask('test', ['clean', 'djangoStatic', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'bridge', 'nodeunit']);
   grunt.registerTask('default', ['jshint', 'test']);
 };

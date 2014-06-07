@@ -1,14 +1,15 @@
-===================
-Grunt django static
-===================
+============
+Grunt bridge
+============
 
-.. image:: https://travis-ci.org/palazzem/grunt-django-static.svg?branch=master
+.. image:: https://travis-ci.org/palazzem/grunt-bridge.svg?branch=master
    :alt: Build Status
-   :target: https://travis-ci.org/palazzem/grunt-django-static
+   :target: https://travis-ci.org/palazzem/grunt-bridge
 
-Replaces all static references, with a custom pattern, on any views.
+Convert all your js/css references from any views to valid backend framework static urls. Just choose your substitution
+pattern.
 
-Requirements:
+NPM requirements:
 
 * grunt >= 0.4.5
 * `xpath`_
@@ -22,7 +23,7 @@ Use case
 
 This grunt task is really helpful if you need to compile a valid HTML page from your frontend app so it can be used
 in your backend project as a base template. A valid example is a `Django`_ app without a ``base.html`` template.
-Change your Django setting ``TEMPLATE_DIRS`` to extend search path to your grunt-django-static destination dir.
+Change your Django setting ``TEMPLATE_DIRS`` to extend search path to your grunt-bridge destination dir.
 In this way you'll achieve a ``base.html`` template in common between your frontend and backend app.
 
 .. _Django: https://www.djangoproject.com/
@@ -36,7 +37,7 @@ this command:
 
 .. code-block:: bash
 
-    $ npm install grunt-django-static --save-dev # Not published yet!
+    $ npm install grunt-bridge --save-dev
 
 .. _grunt: http://gruntjs.com/
 .. _Getting Started: http://gruntjs.com/getting-started
@@ -45,7 +46,7 @@ this command:
 Available task
 --------------
 
-This plugin exports ``djangoStatic`` task and you can use it in your gruntfile. However remember that this replace
+This plugin exports ``bridge`` task and you can use it in your gruntfile. However remember that this replace
 all your static (JS and CSS) with your chosen pattern so it's really useful if launched as last (or almost last) task
 as follows:
 
@@ -65,7 +66,7 @@ as follows:
         'rev',
         'usemin',
         'htmlmin',
-        'djangoStatic:dist'     // Here I am!
+        'bridge:dist'     // Here I am!
     ]);
 
 Settings
@@ -77,7 +78,7 @@ Add to your ``grunt.initConfig()`` this configuration:
 
     // ...
 
-    djangoStatic: {
+    bridge: {
         dev: {
             dest: '.tmp/templates/base.html'
         },
@@ -91,16 +92,16 @@ Add to your ``grunt.initConfig()`` this configuration:
 Use in a watcher
 ----------------
 
-Prepare your watcher to launch ``djangoStatic`` on every page changes:
+Prepare your watcher to launch ``bridge`` on every page changes:
 
 .. code-block:: javascript
 
     watch: {
         // ...
 
-        djangoStatic: {
+        bridge: {
             files: ['<%= yeoman.app %>/*.html'],
-            tasks: ['djangoStatic:dev']
+            tasks: ['bridge:dev']
         },
 
         // ...

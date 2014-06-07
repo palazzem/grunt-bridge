@@ -1,6 +1,6 @@
 /*
- * grunt-django-static
- * https://github.com/palazzem/grunt-django-static
+ * grunt-bridge
+ * https://github.com/palazzem/grunt-bridge
  *
  * Copyright (c) 2014 Emanuele Palazzetti
  * Licensed under the BSD license.
@@ -14,7 +14,7 @@ module.exports = function (grunt) {
     defaultMime = 'text/html',
     format = require('../lib/formatter').format;
 
-  grunt.registerMultiTask('djangoStatic', 'Convert all your js/css references to valid django static urls', function () {
+  grunt.registerMultiTask('bridge', 'Convert all your js/css references to valid backend framework static urls', function () {
     // Collect files and options
     var options = this.options({
       html: 'app/base.html',
