@@ -144,10 +144,12 @@ Destination directory.
 Changelog
 ---------
 
-0.1.0 [soon]
-~~~~~~~~~~~~
+0.1.1
+~~~~~
 
-* First release
+* Set a base HTML as a source and replace all css/js urls with a chosen pattern
+* DJango static template tag is the default pattern
+* Replacement skips CDN urls
 
 License
 -------
