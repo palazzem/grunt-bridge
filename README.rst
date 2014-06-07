@@ -6,6 +6,10 @@ Grunt bridge
    :alt: Build Status
    :target: https://travis-ci.org/palazzem/grunt-bridge
 
+.. image:: https://coveralls.io/repos/palazzem/grunt-bridge/badge.png
+   :alt: Coverage Status
+   :target: https://coveralls.io/r/palazzem/grunt-bridge
+
 Convert all your js/css references from any views to valid backend framework static urls. Just choose your substitution
 pattern.
 
