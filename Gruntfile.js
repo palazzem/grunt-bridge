@@ -29,38 +29,36 @@ module.exports = function(grunt) {
       tests: ['tmp']
     },
 
-    // Configuration to be run (and then tested).
-    bridge: {
-      css: {
-        options: {
-          html: 'test/fixtures/css.html',
-          dest: 'tmp/css.html'
-        }
-      },
-      cssCdn: {
-        options: {
-          html: 'test/fixtures/cssCdn.html',
-          dest: 'tmp/cssCdn.html'
-        }
-      },
-      script: {
-        options: {
-          html: 'test/fixtures/script.html',
-          dest: 'tmp/script.html'
-        }
-      },
-      differentPattern: {
-        options: {
-          html: 'test/fixtures/pattern.html',
-          pattern: '{{# url \'{path}\' }}',
-          dest: 'tmp/pattern.html'
-        }
-      }
-    },
-
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
+    },
+
+    // Code coverage
+    env: {
+      coverage: {
+        APP_DIR_FOR_CODE_COVERAGE: 'test/coverage/instrument/'
+      }
+    },
+    instrument: {
+      files: ['lib/*.js'],
+      options: {
+        lazy: true,
+        basePath: 'test/coverage/instrument/'
+      }
+    },
+    storeCoverage: {
+      options: {
+        dir: 'test/coverage/reports'
+      }
+    },
+    makeReport: {
+      src: 'test/coverage/reports/**/*.json',
+      options: {
+        type: 'lcov',
+        dir: 'test/coverage/reports',
+        print: 'detail'
+      }
     }
 
   });
@@ -69,11 +67,14 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   // Test task
-  grunt.registerTask('test', ['clean', 'bridge', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'nodeunit']);
+  grunt.registerTask('coverage', ['env:coverage', 'instrument', 'nodeunit', 'storeCoverage', 'makeReport']);
   grunt.registerTask('default', ['jshint', 'test']);
 };
