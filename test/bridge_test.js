@@ -65,5 +65,20 @@ exports.bridge = {
     test.equal(actual, expected, 'should use a different pattern');
 
     test.done();
+  },
+  scriptNoSrc: function(test) {
+    test.expect(1);
+
+    var options = {
+      html: 'test/fixtures/scriptnosrc.html',
+      pattern: '{{# url \'{path}\' }}',
+      dest: 'tmp/scriptnosrc.html'
+    };
+
+    var actual = bridgeReplacement(grunt.file.read('test/fixtures/scriptnosrc.html'), options);
+    var expected = grunt.file.read('test/expected/scriptnosrc.html');
+    test.equal(actual, expected, 'should use a different pattern');
+
+    test.done();
   }
 };
