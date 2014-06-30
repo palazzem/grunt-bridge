@@ -144,6 +144,11 @@ Destination directory.
 Changelog
 ---------
 
+0.1.2
+~~~~~
+
+* Bugfix #3: <script> tags without 'src' attribute are ignored
+
 0.1.1
 ~~~~~
 
