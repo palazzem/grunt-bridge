@@ -1,3 +1,9 @@
+# Build system
 node_modules
 npm-debug.log
+
+# Tests
 coverage/
+
+# IDE
+.idea/
