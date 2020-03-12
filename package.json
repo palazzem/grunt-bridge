@@ -46,7 +46,7 @@
     "grunt-istanbul": "^0.3.0",
     "grunt-coveralls": "^0.3.0",
     "grunt-env": "^0.4.1",
-    "npm": "^1.4.13",
+    "npm": "^6.14.2",
     "install": "^0.1.7"
   },
   "peerDependencies": {
